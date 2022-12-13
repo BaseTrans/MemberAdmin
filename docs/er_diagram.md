@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     %% CAR ||--o{ NAMED-DRIVER : allows
     %% CAR {
@@ -38,3 +39,4 @@ erDiagram
         uuid memberId FK "PK of MEMEBR"
         uuid transactionId FK "PK of BankRecords"
     }
+```
