@@ -15,8 +15,8 @@ erDiagram
     %%     int age
     %% }
 
-    Member ||--o{ PaymentRecords : needs
-    Member {
+    Account ||--o{ PaymentRecords : needs
+    Account {
         uuid   id PK
         string name
         string doorId
@@ -30,13 +30,13 @@ erDiagram
     PaymentRecords ||--o{ BankRecords : from
     PaymentRecords {
         uuid id PK
-        uuid memberId FK "PK of MEMEBR"
+        uuid AccountId FK "PK of MEMEBR"
         uuid transactionId FK "PK of BankRecords"
     }
     BankRecords
     BankRecords {
         uuid id PK
-        uuid memberId FK "PK of MEMEBR"
+        uuid AccountId FK "PK of MEMEBR"
         uuid transactionId FK "PK of BankRecords"
     }
 ```
