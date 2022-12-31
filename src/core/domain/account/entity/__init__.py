@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app import db
 # from sqlalchemy.dialects.postgresql import JSON
 
@@ -8,7 +10,12 @@ class Account(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
-    door_num = db.Column(db.Integer())
-    cabinet_num = db.Column(db.Integer())
-    # result_all = db.Column(JSON)
-    # result_no_stop_words = db.Column(JSON)
+    door_id = db.Column(db.Integer())
+    cabinet_num = db.Column(db.String())
+    is_active = db.Column(db.Boolean())
+    charge_amount_per_month = db.Column(db.Float())
+    last_pay_date = db.Column(db.DateTime, default=datetime.utcnow)
+    last_pay_amount = db.Column(db.Float())
+    next_pay_date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    db_product_payment_records = db.relationship("PaymentRecords", backref="Account")
