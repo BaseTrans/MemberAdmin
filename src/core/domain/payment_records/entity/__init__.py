@@ -1,10 +1,15 @@
-from app import db
+import uuid
 
-class PaymentRecords(db.Model):
+from sqlalchemy.dialects.postgresql import UUID
+
+from app import db
+from core.common.entity import IntEntity, BaseEntity
+
+
+
+class PaymentRecords(BaseEntity, IntEntity, db.Model):
 
     __tablename__ = 'PaymentRecords'
 
-    id = db.Column(db.Integer, primary_key=True)
     transaction_id = db.Column(db.String()) # ForeignKey
-
-    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'), nullable=False)
+    account_id: UUID = db.Column(UUID(as_uuid=True), db.ForeignKey('Account.id'))

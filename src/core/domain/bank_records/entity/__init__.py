@@ -1,12 +1,12 @@
 from app import db
-from datetime import datetime
+
+from core.common.entity import IntEntity, BaseEntity
 
 
-class BankRecords(db.Model):
+class BankRecords(BaseEntity, IntEntity, db.Model):
 
     __tablename__ = 'BankRecords'
 
-    id = db.Column(db.Integer, primary_key=True)
     transaction_date = db.Column(db.DateTime, nullable=False)
     account_date = db.Column(db.DateTime, nullable=False)
     summary = db.Column(db.String)

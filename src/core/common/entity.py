@@ -1,20 +1,24 @@
-from uuid import uuid4, UUID
+import uuid
 
-import attr
+from sqlalchemy.ext.declarative import declarative_base
+
+from app import db
+from sqlalchemy.dialects.postgresql import UUID
 
 
-@attr.s(auto_attribs=True)
-class Entity(object):
+BaseEntity = declarative_base()
+
+class IntEntity(object):
+
     """ Int ID Entity """
-    id: int = None
+    id: int = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-
-@attr.s(auto_attribs=True)
 class UuidEntity(object):
+
     """ UUID Entity """
-    id: UUID = uuid4()
+    id: UUID = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
 
-@attr.s(auto_attribs=True)
 class ValueObject(object):
+
     """ Value Object """
