@@ -1,13 +1,13 @@
 from datetime import datetime
 
 from app import db
-from core.common.entity import UuidEntity, BaseEntity
+from .common.entity import UuidEntity, BaseEntity
 
 
 
 class Account(BaseEntity, UuidEntity, db.Model):
 
-    __tablename__ = 'Account'
+    __tablename__ = 'Accounts'
 
     name = db.Column(db.String())
     door_id = db.Column(db.Integer())
@@ -18,6 +18,4 @@ class Account(BaseEntity, UuidEntity, db.Model):
     last_pay_amount = db.Column(db.Float())
     next_pay_date = db.Column(db.DateTime, default=datetime.utcnow)
 
-    db_product_payment_records = db.relationship("PaymentRecords", backref="Account")
-    # def __init__(self):
-    #     super().__init__()
+    db_account_payment_records = db.relationship("PaymentRecords", backref="Accounts")

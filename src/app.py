@@ -12,9 +12,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:23322335@localhos
 
 db = SQLAlchemy(app)
 
-from core.domain.account import entity
-from core.domain.bank_records import entity
-from core.domain.payment_records import entity
+from domain.dao import account
+from domain.dao import bank_record
+from domain.dao import payment_record
 
 migrate = Migrate(app, db)
 db.init_app(app)

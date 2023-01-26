@@ -12,9 +12,12 @@ db-drop:
 
 db-init:
 	@echo data base init
+	rmdir /q /s "./src/migrations"
 	cd ./src && flask db init
 
 db-migrate:
 	@echo database migration
 	cd ./src && flask db migrate -m $(MSG)
 	cd ./src && flask db upgrade
+
+db-reconstruct: db-create db-init db-migrate

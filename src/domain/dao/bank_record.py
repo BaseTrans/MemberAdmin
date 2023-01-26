@@ -1,9 +1,11 @@
+from sqlalchemy.orm import backref
+
 from app import db
 
-from core.common.entity import IntEntity, BaseEntity
+from .common.entity import IntEntity, BaseEntity
 
 
-class BankRecords(BaseEntity, IntEntity, db.Model):
+class BankRecord(BaseEntity, IntEntity, db.Model):
 
     __tablename__ = 'BankRecords'
 
@@ -13,3 +15,4 @@ class BankRecords(BaseEntity, IntEntity, db.Model):
     transaction_amount = db.Column(db.Numeric, nullable=False)
     balance = db.Column(db.Numeric, nullable=False)
     remark = db.Column(db.String)
+    r_with_payment_records = db.relationship("PaymentRecords", backref=backref("BankRecords", uselist=False))
