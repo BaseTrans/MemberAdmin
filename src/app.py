@@ -15,6 +15,7 @@ db = SQLAlchemy(app)
 from domain.dao import account
 from domain.dao import bank_record
 from domain.dao import payment_record
+from domain.dao import payment_info
 
 migrate = Migrate(app, db)
 db.init_app(app)
