@@ -11,7 +11,7 @@ class IRepository(metaclass=abc.ABCMeta):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def get_by_pkey(self, pkey):
+    def get_by_pkey(self, pkey, entity):
         """ Retrieves entity by its primary key """
         raise NotImplementedError()
 
