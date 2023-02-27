@@ -1,14 +1,12 @@
-from abc import ABC, abstractmethod
-from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from src.infra.db_interface.repository import IRepository
 
+from app import db
 
 class SqlAlchemyRepository(IRepository):
 
-    def __init__(self, db_url):
-        self.engine = create_engine(db_url)
+    def __init__(self):
+        self.engine = db.engine
         Session = sessionmaker(bind=self.engine)
         self.session = Session()
 
